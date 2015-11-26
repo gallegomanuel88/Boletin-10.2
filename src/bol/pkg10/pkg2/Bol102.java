@@ -14,7 +14,7 @@ public class Bol102 {
     public static void main(String[] args) {
         Calculos obj = new Calculos ();
         obj.comparar();
-        JOptionPane.showMessageDialog(null, "GameOver");
+        obj.imprimirDatos("GameOver");
     }
     
 }
