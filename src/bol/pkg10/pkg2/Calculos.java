@@ -11,41 +11,45 @@ public class Calculos {
     int numeroAleatorio = (int) (Math.random()*50);
     int numeroIntentos;
     
-    public int introduccionIntentos (){
+    public void imprimirDatos (String imprimir){
+        JOptionPane.showMessageDialog(null, imprimir);
+    }
+    
+    public int introduccionDatos (String introducir){
         do {
-            numeroIntentos = Integer.parseInt(JOptionPane.showInputDialog("Jugador 1: Introduce numero de intentos para el jugador 2"));
+            numeroIntentos = Integer.parseInt(JOptionPane.showInputDialog(introducir));
         } while (numeroIntentos < 1);
         return numeroIntentos;
     }
 
     public void comparar() {
 
-        numeroIntentos = introduccionIntentos ();
-        int perdiste = 0; //perdiste;
+        numeroIntentos = introduccionDatos ("Jugador 1: Introduce numero de intentos para el jugador 2");
+        int perdiste = 0; //0 perdiste;
        
         for (int i = 0; i < numeroIntentos; i++) {
-            int numRespuesta = Integer.parseInt(JOptionPane.showInputDialog("Adivina un numero entre el 1 y el 50"));
+            int numRespuesta = introduccionDatos("Adivina un numero entre el 1 y el 50");
             if (numRespuesta > (numeroAleatorio+20)|numRespuesta < (numeroAleatorio-20)) {
-                JOptionPane.showMessageDialog(null, "¡¡¡INCORRECTO!!! Muy lejos");
+                imprimirDatos("¡¡¡INCORRECTO!!! Muy lejos");
             } 
             else if (numRespuesta >= (numeroAleatorio+10)|numRespuesta <= (numeroAleatorio-10)) {
-                JOptionPane.showMessageDialog(null, "¡¡¡INCORRECTO!!! Lejos");
+                imprimirDatos("¡¡¡INCORRECTO!!! Lejos");
             }
             else if (numRespuesta > (numeroAleatorio+5)|numRespuesta < (numeroAleatorio-5)) {
-                JOptionPane.showMessageDialog(null, "¡¡¡INCORRECTO!!! Cerca");
+                imprimirDatos("¡¡¡INCORRECTO!!! Cerca");
             }
             else if (numRespuesta > (numeroAleatorio)|numRespuesta < (numeroAleatorio)) {
-                JOptionPane.showMessageDialog(null, "¡¡¡INCORRECTO!!! Muy cerca");
+                imprimirDatos("¡¡¡INCORRECTO!!! Muy cerca");
             }
             else if (numRespuesta == numeroAleatorio) {
-                JOptionPane.showMessageDialog(null, "Has acertado");
+                imprimirDatos("Has acertado");
                 perdiste = 1;
                 break;
             }
 
         }
         if (perdiste == 0){
-            JOptionPane.showMessageDialog(null, "Perdiste, numero de intentos agotados");
+            imprimirDatos("Perdiste, numero de intentos agotados");
         }
     }
 }
